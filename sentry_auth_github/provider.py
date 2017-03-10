@@ -83,6 +83,8 @@ class GitHubOAuth2Provider(OAuth2Provider):
 
         try:
             if not client.is_org_member(access_token, self.org['id']):
-                raise IdentityNotValid
+                #comment out of this code since we want user can always login even they don't belong to the org
+                #raise IdentityNotValid
+                return 
         except GitHubApiError as e:
             raise IdentityNotValid(e)
