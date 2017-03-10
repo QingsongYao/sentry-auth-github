@@ -31,9 +31,10 @@ class FetchUser(AuthView):
     def handle(self, request, helper):
         access_token = helper.fetch_state('data')['access_token']
 
-        if self.org is not None:
-            if not self.client.is_org_member(access_token, self.org['id']):
-                return helper.error(ERR_NO_ORG_ACCESS)
+        # comment out this code since we want people to login into github use SSO to view all projects
+        # if self.org is not None:
+        #    if not self.client.is_org_member(access_token, self.org['id']):
+        #        return helper.error(ERR_NO_ORG_ACCESS)
 
         user = self.client.get_user(access_token)
 
